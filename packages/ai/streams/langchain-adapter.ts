@@ -74,6 +74,12 @@ function toDataStreamInternal(
                 value.data?.chunk as LangChainAIMessageChunk,
                 controller,
               );
+            } else {
+              const eventData = {
+                event: value.event,
+                data: value.data,
+              };
+              controller.enqueue(JSON.stringify(eventData));
             }
             return;
           }
